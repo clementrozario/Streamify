@@ -26,13 +26,24 @@ A modern **music streaming analytics dashboard** built with **React, Tailwind CS
 
 ![Bar Chart](src/assets/BarChart.png)
 
-![Data Table](assets/DataTable.png)
+![Data Table](src/assets/DataTable.png)
 
 ## 📦 Installation & Setup
 
-1️⃣ **Clone the repository**
+1️⃣ Clone the repository
 ```sh
 git clone https://github.com/your-username/streamify-dashboard.git
 cd streamify-dashboard
+
+2️⃣ Install dependencies
+npm install
+
+3️⃣ Start the development server
+npm run build
+
+4️⃣ Build for production
+npm run build
+
+
 
 
