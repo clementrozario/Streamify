@@ -1,16 +1,38 @@
-<<<<<<< HEAD
-# Streamify
-=======
-# React + Vite
+# 🎵 Streamify Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **music streaming analytics dashboard** built with **React, Tailwind CSS, and Recharts**. It provides insights into music streaming data, including user growth, revenue distribution, and top streamed songs.**This V0 all the datas are just mock data**
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✅ **Metrics Overview** – Displays key performance indicators (KPIs)  
+✅ **Interactive Charts** – Line, bar, and pie charts for data visualization  
+✅ **Search & Filtering** – Easily find songs and filter by artist  
+✅ **Sorting** – Sort stream data by date and popularity  
+✅ **Responsive UI** – Fully optimized for mobile and desktop  
+✅ **Local State Persistence** – Saves user preferences with localStorage  
+✅ **Performance Optimizations** – useMemo and React.memo to minimize re-renders  
 
-## Expanding the ESLint configuration
+## 🖥️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
->>>>>>> 14e71f1 (Completed Streamify Dashboard: Added charts, filters, sorting, and responsive UI)
+- **Frontend:** React, Tailwind CSS, Recharts
+- **State Management:** useState, useEffect, useMemo
+- **Performance Optimizations:** React.memo, useMemo
+- **Data Handling:** Mock JSON data
+- **Deployment:** GitHub Pages / Vercel / Netlify
+
+## 📸 Screenshots
+
+![Metrics & Chart Table](src/assets/metrics&Charts.png)
+
+![Bar Chart](src/assets/BarChart.png)
+
+![Data Table](assets/DataTable.png)
+
+## 📦 Installation & Setup
+
+1️⃣ **Clone the repository**
+```sh
+git clone https://github.com/your-username/streamify-dashboard.git
+cd streamify-dashboard
+
+
