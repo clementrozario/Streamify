@@ -1,10 +1,27 @@
 import React from 'react';
 
-function TableControls({ searchTerm, setSearchTerm, sortBy, setSortBy, filterArtist, setFilterArtist, artists }) {
+interface TableControlsProps {
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+  sortBy: string;
+  setSortBy: (sortOption: string) => void;
+  filterArtist: string;
+  setFilterArtist: (artist: string) => void;
+  artists: string[];
+}
+
+const TableControls: React.FC<TableControlsProps> = ({
+  searchTerm,
+  setSearchTerm,
+  sortBy,
+  setSortBy,
+  filterArtist,
+  setFilterArtist,
+  artists,
+}) => {
   return (
     <div className="bg-white p-4 rounded-t-lg shadow-md border-b">
       <div className="flex flex-col sm:flex-row gap-4">
-        
         <div className="flex-1">
           <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">
             Search
@@ -19,7 +36,6 @@ function TableControls({ searchTerm, setSearchTerm, sortBy, setSortBy, filterArt
           />
         </div>
 
-      
         <div className="w-full sm:w-48">
           <label htmlFor="filter" className="block text-sm font-medium text-gray-700 mb-1">
             Filter by Artist
@@ -39,7 +55,6 @@ function TableControls({ searchTerm, setSearchTerm, sortBy, setSortBy, filterArt
           </select>
         </div>
 
-        
         <div className="w-full sm:w-48">
           <label htmlFor="sort" className="block text-sm font-medium text-gray-700 mb-1">
             Sort by
@@ -59,6 +74,6 @@ function TableControls({ searchTerm, setSearchTerm, sortBy, setSortBy, filterArt
       </div>
     </div>
   );
-}
+};
 
 export default TableControls;

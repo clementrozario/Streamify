@@ -1,7 +1,9 @@
-import React from 'react';
-
-
-function MetricCard({title , value , icon}){
+type MetricCardProps = {
+    title:string;
+    value:string | number;
+    icon?: string;
+}
+function MetricCard({title , value , icon}:MetricCardProps){
     return(
         <div className='bg-white rounded-lg shadow-md p-4 flex flex-col'>
             <div className='flex items-center justify-between mb-2'>

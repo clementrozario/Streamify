@@ -1,27 +1,35 @@
-import React from 'react';
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer, TooltipProps } from 'recharts';
 import { revenueData } from '../../../data/mockData';
 
-function RevenueDistributionChart() {
+type RevenueDataPoint = {
+  source:string;
+  value:number;
+}
   
   const COLORS = ['#3b82f6', '#10b981', '#f59e0b'];
 
-  const formatCurrency = (value) => {
+  const formatCurrency = (value:number):string => {
     return `$${(value / 1000).toFixed(0)}K`;
   };
 
-  const CustomTooltip = ({ active, payload }) => {
-    if (active && payload && payload.length) {
+  const CustomTooltip = ({ active, payload }:TooltipProps<number, string>) => {
+    if (active && payload?.length) {
+      const name = payload[0].name;
+      const value = payload[0].value;
       return (
         <div className="bg-white p-2 border border-gray-200 shadow-sm">
-          <p className="font-medium">{payload[0].name}</p>
-          <p className="text-blue-600">{formatCurrency(payload[0].value)}</p>
+          <p className="font-medium">{name}</p>
+          <p className="text-blue-600">
+            {value !== undefined ? formatCurrency(value):'N/A'}
+          </p>
         </div>
       );
     }
     return null;
   };
 
+const RevenueDistributionChart:React.FC = () =>{
   return (
     <div className="bg-white p-4 rounded-lg shadow-md">
       <h2 className="text-xl font-semibold mb-4">Revenue Distribution</h2>
@@ -29,7 +37,7 @@ function RevenueDistributionChart() {
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
-              data={revenueData}
+              data={revenueData as RevenueDataPoint[]}
               cx="50%"
               cy="50%"
               labelLine={false}
@@ -40,7 +48,7 @@ function RevenueDistributionChart() {
               label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
             >
               {revenueData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell key={`cell-${entry.source}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
             <Tooltip content={<CustomTooltip />} />

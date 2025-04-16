@@ -1,40 +1,42 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import TableControls from './TableControls';
 import { streamData } from '../../../data/mockData';
 
-function DataTable() {
-  // State for search, filter, and sort
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterArtist, setFilterArtist] = useState('');
-  const [sortBy, setSortBy] = useState('dateDesc');
+type StreamDataItem = {
+  id: number;
+  songName: string;
+  artist: string;
+  dateStreamed: string;
+  streamCount: number;
+  userId: string;
+};
 
-  // Extract unique artists for the filter dropdown
-  const artists = useMemo(() => {
+const DataTable: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [filterArtist, setFilterArtist] = useState<string>('');
+  const [sortBy, setSortBy] = useState<string>('dateDesc');
+
+  const artists = useMemo<string[]>(() => {
     return [...new Set(streamData.map(item => item.artist))];
   }, []);
 
-  // Filter and sort the data
-  const filteredAndSortedData = useMemo(() => {
-    // First, filter the data
+  const filteredAndSortedData = useMemo<StreamDataItem[]>(() => {
     let result = streamData.filter(item => {
-      // Filter by search term
-      const matchesSearch = 
+      const matchesSearch =
         item.songName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.artist.toLowerCase().includes(searchTerm.toLowerCase());
-      
-      // Filter by artist
+
       const matchesArtist = filterArtist === '' || item.artist === filterArtist;
-      
+
       return matchesSearch && matchesArtist;
     });
 
-    // Then, sort the data
-    result.sort((a, b) => {
+    result.sort((a: StreamDataItem, b: StreamDataItem) => {
       switch (sortBy) {
         case 'dateAsc':
-          return new Date(a.dateStreamed) - new Date(b.dateStreamed);
+          return new Date(a.dateStreamed).getTime() - new Date(b.dateStreamed).getTime();
         case 'dateDesc':
-          return new Date(b.dateStreamed) - new Date(a.dateStreamed);
+          return new Date(b.dateStreamed).getTime() - new Date(a.dateStreamed).getTime();
         case 'streamAsc':
           return a.streamCount - b.streamCount;
         case 'streamDesc':
@@ -47,9 +49,8 @@ function DataTable() {
     return result;
   }, [searchTerm, filterArtist, sortBy]);
 
-  // Format date to be more readable
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  const formatDate = (dateString: string): string => {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' } as const;
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
@@ -110,7 +111,7 @@ function DataTable() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5" className="px-6 py-4 text-center text-sm text-gray-500">
+                  <td colSpan={5} className="px-6 py-4 text-center text-sm text-gray-500">
                     No results found
                   </td>
                 </tr>
@@ -121,6 +122,6 @@ function DataTable() {
       </div>
     </div>
   );
-}
+};
 
 export default DataTable;

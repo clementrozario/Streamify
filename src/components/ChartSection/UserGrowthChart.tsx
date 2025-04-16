@@ -2,13 +2,21 @@
 import { LineChart,Line,XAxis,YAxis,CartesianGrid,Tooltip,Legend,ResponsiveContainer } from "recharts";
 import { userGrowthData } from "../../../data/mockData";
 
+type UserGrowthDataPoint = {
+    month:string;
+    totalUsers:number;
+    activeUsers:number;
+}
+
+const typedUserGrowthData:UserGrowthDataPoint[] = userGrowthData;
+
 function UserGrowthChart(){
     return(
         <div className="bg-white p-4 rounded-lg shawdow-md">
             <h2 className="font-semibold text-xl mb-4">User Growth</h2>
             <div className="h-64">
                 <ResponsiveContainer >
-                    <LineChart data={userGrowthData} margin={{top:5,right:30,left:20,bottom:5}}>
+                    <LineChart data={typedUserGrowthData} margin={{top:5,right:30,left:20,bottom:5}}>
                     <CartesianGrid strokeDasharray={"3 3"}/>
                     <XAxis dataKey="month" />
                     <YAxis  />

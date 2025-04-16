@@ -1,5 +1,40 @@
+export type MetricsData = {
+  totalUsers:number;
+    activeUsers:number;
+    totalStreams:number;
+    revenue:number;
+    topArtist: string;
+};
 
-export const metricsData = {
+export type UserGrowth ={
+  month:string;
+  totalUsers:number;
+  activeUsers:number;
+}
+
+export type RevenueItem = {
+  source: string;
+  value: number;
+};
+
+export type SongData = {
+  name: string;
+  artist: string;
+  streams: number;
+};
+
+export type StreamEntry = {
+  id: number;
+  songName: string;
+  artist: string;
+  dateStreamed: string; 
+  streamCount: number;
+  userId: string;
+};
+
+// --------------------------------------------------------------//
+
+export const metricsData: MetricsData = {
     totalUsers:45000,
     activeUsers:32400,
     totalStreams:1250000,
@@ -7,7 +42,7 @@ export const metricsData = {
     topArtist: "Taylor Swift"
 };
 
-export const userGrowthData = [
+export const userGrowthData:UserGrowth[] = [
         {month:"Jan",totalUsers:30000,activeUsers:22000},
         {month:"Feb",totalUsers:32000,activeUsers:23500},
         {month:"Mar",totalUsers:33500,activeUsers:24200},
@@ -22,13 +57,13 @@ export const userGrowthData = [
         {month:"Dec",totalUsers:45000,activeUsers:32400},
 ];
 
-export const revenueData = [
+export const revenueData:RevenueItem[] = [
     { source: "Subscriptions", value: 680000 },
     { source: "Advertisements", value: 120000 },
     { source: "Merchandise", value: 50000 }
   ];
 
-export const topSongsData = [
+export const topSongsData:SongData[] = [
     { name: "Blinding Lights", artist: "The Weeknd", streams: 68500 },
     { name: "Shape of You", artist: "Ed Sheeran", streams: 62300 },
     { name: "Levitating", artist: "Dua Lipa", streams: 58900 },
@@ -36,7 +71,7 @@ export const topSongsData = [
     { name: "Dance Monkey", artist: "Tones and I", streams: 48700 }
   ];
 
-  export const streamData = [
+  export const streamData:StreamEntry[] = [
     { id: 1, songName: "Blinding Lights", artist: "The Weeknd", dateStreamed: "2023-04-15", streamCount: 45670, userId: "U12345" },
     { id: 2, songName: "Shape of You", artist: "Ed Sheeran", dateStreamed: "2023-04-14", streamCount: 38290, userId: "U23456" },
     { id: 3, songName: "Levitating", artist: "Dua Lipa", dateStreamed: "2023-04-13", streamCount: 32430, userId: "U34567" },

@@ -1,19 +1,20 @@
-import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,TooltipProps } from 'recharts';
 import { topSongsData } from '../../../data/mockData';
 
-function TopSongsChart() {
-  
-  const formattedData = topSongsData.map(song => ({
-    ...song,
-    
-    label: song.name.length > 15 ? song.name.substring(0, 15) + '...' : song.name
-  }));
+type SongData = {
+  name:string;
+  artist:string;
+  streams:number;
+}
 
+type FormattedSongData = SongData & {
+  label:string;
+}
   
-  const CustomTooltip = ({ active, payload }) => {
-    if (active && payload && payload.length) {
-      const data = payload[0].payload;
+  const CustomTooltip = ({ active, payload }:TooltipProps<number,string>) => {
+    if (active && payload?.length) {
+      const data = payload[0].payload as SongData;
       return (
         <div className="bg-white p-3 border border-gray-200 shadow-md rounded">
           <p className="font-semibold text-gray-900">{data.name}</p>
@@ -24,6 +25,12 @@ function TopSongsChart() {
     }
     return null;
   };
+
+  const TopSongsChart: React.FC = () => {
+    const formattedData: FormattedSongData[] = topSongsData.map((song) => ({
+      ...song,
+      label:song.name.length > 15 ? song.name.substring(0,15) + '...' : song.name,
+    }));
 
   return (
     <div className="bg-white p-4 rounded-lg shadow-md">
