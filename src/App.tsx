@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Header from './components/Header/Header'
 import MetricsSection from './components/MetricsSection/MetricsSection';
 import UserGrowthChart from './components/ChartSection/UserGrowthChart';
